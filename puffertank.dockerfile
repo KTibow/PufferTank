@@ -23,9 +23,6 @@ RUN apt-get install -y\
     sqlite3 \
     libomp-dev libglfw3 libgl1-mesa-dev python3.12-dev
 
-# Nsight Systems for profiling
-RUN apt-get install -y --no-install-recommends nsight-systems-2025.6.3
-
 # Run on container startup
 COPY entrypoint.sh /root/entrypoint.sh
 RUN chmod +x /root/entrypoint.sh
