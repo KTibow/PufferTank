@@ -4,9 +4,9 @@ ARG DEBIAN_FRONTEND=noninteractive
 # Drop problematic libcuda.so
 RUN rm -f /etc/ld.so.conf.d/00-compat-*.conf && ldconfig
 
-# Core system packages
-# Custom installs without the cudnn base also need libnccl2 libnccl-dev
-RUN apt-get update && apt-get install -y curl wget sudo git build-essential clang cmake unzip
+# Core system packages (includes build deps for C++ extension)
+RUN apt-get update && apt-get install -y curl wget sudo git build-essential clang cmake unzip \
+    libx11-dev libglfw3 libgl1-mesa-dev
 
 # Install uv and clone PufferLib
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
@@ -21,7 +21,7 @@ RUN --mount=type=cache,target=/root/.ccache . $HOME/.local/bin/env && uv sync
 RUN apt-get install -y\
     htop gdb tmux psmisc llvm ccache \
     sqlite3 \
-    libomp-dev libglfw3 libgl1-mesa-dev python3.12-dev
+    libomp-dev
 
 # Run on container startup
 COPY entrypoint.sh /root/entrypoint.sh
