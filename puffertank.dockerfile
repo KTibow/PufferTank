@@ -11,9 +11,9 @@ RUN apt-get update && apt-get install -y curl wget sudo git build-essential clan
 # Install uv and clone PufferLib
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
     && . $HOME/.local/bin/env \
-    && git clone https://github.com/KTibow/pufferlib --branch 4.0 /pufferlib
+    && git clone https://github.com/KTibow/puffer --branch 4.0 /puffer
 
-WORKDIR /pufferlib
+WORKDIR /puffer
 
 # Sync Python deps
 RUN --mount=type=cache,target=/root/.ccache . $HOME/.local/bin/env && uv sync
@@ -34,7 +34,7 @@ ENTRYPOINT ["/root/entrypoint.sh"]
 # Bashrc
 RUN echo "export PS1=$''" >> ~/.bashrc \
  && echo "alias diff='diff --color --palette=':ad=36:de=31:ln=33''" >> ~/.bashrc \
- && echo "cd /pufferlib" >> ~/.bashrc \
+ && echo "cd /puffer" >> ~/.bashrc \
  && echo "export __GLX_VENDOR_LIBRARY_NAME=mesa" >> ~/.bashrc
 
 RUN apt-get clean
