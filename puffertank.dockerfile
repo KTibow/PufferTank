@@ -6,7 +6,7 @@ RUN rm -f /etc/ld.so.conf.d/00-compat-*.conf && ldconfig
 
 # Core system packages (includes build deps for C++ extension)
 RUN apt-get update && apt-get install -y curl wget sudo git build-essential clang cmake unzip \
-    libx11-dev libglfw3 libgl1-mesa-dev
+    libx11-dev libglfw3 libgl1-mesa-dev python3.12-dev
 
 # Install uv and clone PufferLib
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
