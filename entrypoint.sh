@@ -8,5 +8,7 @@ if ! nvidia-smi > /dev/null 2>&1; then
     echo "WARNING: The NVIDIA Driver was not detected. GPU functionality will not be available."
 fi
 
+cd /puffer && git pull 2>/dev/null || true
+
 # keep container running
 exec "$@"
