@@ -45,7 +45,7 @@ RUN chmod +x /root/entrypoint.sh
 ENTRYPOINT ["/root/entrypoint.sh"]
 
 # Bashrc
-RUN echo "export PS1=$''" >> ~/.bashrc \
+RUN echo 'export PS1="\u@\h:\w\\$ "' >> ~/.bashrc \
  && echo "alias diff='diff --color --palette=':ad=36:de=31:ln=33''" >> ~/.bashrc \
  && echo "cd /puffer" >> ~/.bashrc \
  && echo "export __GLX_VENDOR_LIBRARY_NAME=mesa" >> ~/.bashrc
