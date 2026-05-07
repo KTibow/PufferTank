@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8
+ENV PATH="/usr/local/cuda/bin:${PATH}"
 
 # Safer SSH defaults for a public cloud box.
 # Root login by SSH key is allowed; password login is disabled.
