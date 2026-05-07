@@ -4,6 +4,9 @@ ARG DEBIAN_FRONTEND=noninteractive
 # Drop problematic libcuda.so
 RUN rm -f /etc/ld.so.conf.d/00-compat-*.conf && ldconfig
 
+# Symlink libnvidia-ml.so for compatibility
+RUN ln -s /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so
+
 # Core system packages + SSH/dev tools
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl wget sudo git build-essential clang cmake unzip \
